@@ -1,6 +1,7 @@
 import os
 
 from fastapi import Request
+
 import httpx
 
 
@@ -25,3 +26,4 @@ class CandidateRepository:
                 print(f"Exception type: {type(exc)}")
                 print(f"Exception arguments: {exc.args}")
                 print("Exception traceback:", exc.__traceback__)
+

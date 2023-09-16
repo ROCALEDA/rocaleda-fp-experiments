@@ -1,4 +1,5 @@
 from fastapi import Request
+
 from app.candidate.repositories.candidate_repository import CandidateRepository
 
 
@@ -8,3 +9,4 @@ class CandidateService:
 
     async def get_candidates(self, request: Request):
         return await self.candidate_repository.get_candidates(request)
+
