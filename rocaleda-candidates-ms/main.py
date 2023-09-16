@@ -1,9 +1,11 @@
 from dotenv import load_dotenv
+
+load_dotenv()
+
 from fastapi import FastAPI
 
 from initializer import Initializer
 
-load_dotenv()
 
 app = FastAPI()
 Initializer(app).setup()

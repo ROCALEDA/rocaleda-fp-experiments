@@ -5,5 +5,8 @@ class CandidateService:
     def __init__(self, candidate_repository: CandidateRepository):
         self.candidate_repository = candidate_repository
 
-    async def get_candidates(self):
-        return await self.candidate_repository.get_candidates()
+    async def get_candidates(self, soft_skills: list[int] | None):
+        if soft_skills is None:
+            return await self.candidate_repository.get_candidates()
+
+        return await self.candidate_repository.get_candidates_by_filter(soft_skills)

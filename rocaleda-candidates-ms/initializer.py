@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 
+from app.database import models, database
+
 from app.health.controllers import health_controller
 from app.candidate.controllers import candidate_controller
 from app.health.services.health_service import HealthService
@@ -12,6 +14,7 @@ class Initializer:
         self.app = app
 
     def setup(self):
+        self.init_database()
         self.init_health_module()
         self.init_candidate_module()
 
@@ -25,3 +28,6 @@ class Initializer:
         candidate_service = CandidateService(candidate_repository)
         candidate_controller.initialize(candidate_service)
         self.app.include_router(candidate_controller.router)
+
+    def init_database(self):
+        models.Base.metadata.create_all(bind=database.engine)
