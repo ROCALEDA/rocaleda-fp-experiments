@@ -1,6 +1,20 @@
 version: '3.8'
 
 services:
+  api-gateway:
+    build: ./rocaleda-api-gateway
+    environment:
+      - CANDIDATES_MS=candidates:8000
+    ports:
+      - "8000:8000"
+  candidates:
+    build: ./rocaleda-candidates-ms
+    environment:
+      - DB_URL=postgresql://docker:docker@db:5432/candidates
+    ports:
+      - "8001:8000"
+    depends_on:
+      - db
   db:
     image: postgres:15
     ports:

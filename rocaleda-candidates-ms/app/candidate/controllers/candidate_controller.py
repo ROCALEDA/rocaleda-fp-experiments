@@ -12,6 +12,7 @@ router = APIRouter(
 
 
 def initialize(candidate_service: CandidateService):
-    @router.get("/")
+    @router.get("")
     async def get_candidates(soft_skills: Annotated[list[int] | None, Query()] = None):
-        return await candidate_service.get_candidates(soft_skills)
+        response = await candidate_service.get_candidates(soft_skills)
+        return response
